@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        /* Basic reset for body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set full height and center content */
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: black; /* Full page background black */
+            color: white;
+            text-align: center;
+        }
+
+        /* Style the clock */
+        .clock {
+            font-size: 150px;
+            font-weight: bold;
+            color: red; /* Clock text color red */
+            letter-spacing: 5px;
+            padding: 20px;
+            background-color: black; /* Slightly dark background for the clock */
+            border-radius: 20px;
+            
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Digital Clock -->
+    <div id="clock" class="clock"></div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            // Convert to 12-hour format
+            hours = hours % 12;
+            hours = hours ? hours : 12; // 0 becomes 12
+
+            const time = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = time;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();  // Initial call to display clock immediately
+    </script>
+
+</body>
+</html>
